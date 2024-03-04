@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="butttn.css">
+</head>
+<body>
+<style>
+body{
+	background-image:url("img10.jpg");
+	background-size:cover;
+	opacity:5.0;
+
+  height: 80%; 
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+	background-repeat:no-repeat;
+	
+}
+</style>
+ <div class="container large">	
+	<script>  
+	function validateform(){  
+		let name=document.myform.name.value;  
+		let password=document.myform.password.value;  
+		let contact=document.myform.contact.value;  
+		let email=document.myform.email.value;
+		let number=document.myform.number.value;
+		let time=document.myform.time.value;
+
+if (name==null || name==""){  
+  alert("Name can't be blank");
+  return false;
+}
+if (password==null || password==""){  
+  alert("Password can't be blank");  
+  return false;  
+}
+if (name.length<3){  
+  alert("Name must atleast 3 characters");  
+  return false;  
+}
+//if(!email.endswith("@gmail.com")){
+//	alert("Email should be in correct format");  
+ // return false;
+//}
+
+if (password.length<6){  
+  alert("Password must be at least 6 characters long.");  
+  return false;  
+  }  
+if (!isNaN(name)){  
+  alert("only alphabets allowed");  
+  return false;  
+}
+if (!password.match(/[a-z]/)){  
+  alert("Password should contain atleast one lowercase letter");  
+  return false;  
+}
+if (!password.match(/[A-Z]/)){  
+  alert("Password should contain atleast one uppercase letter");  
+  return false;  
+}  
+if (!password.match(/[0-9]/)){  
+  alert("Password should contain atleast one numeric number");  
+  return false; 
+}
+if (!password.match(/[@ . ; _]/)){  
+  alert("Password should contain atleast one special character");  
+  return false; 
+}
+if (contact==null || contact==""){  
+  alert("Contact can't be empty");  
+  return false; 
+}
+if (contact.length!=10){  
+  alert("Contact length should be ten digits");  
+  return false; 
+}
+if (number.length!=10){  
+  alert("Contact length should be ten digits");  
+  return false; 
+}
+if (contact.match(/[a-z A-Z]/)){  
+  alert("contact should not contain alphabets");  
+  return false; 
+}
+if (!contact.match(/[6-9][0-9]{9}/)){  
+  alert("enter contact in correct format");  
+  return false; 
+}
+if (email==null || email==""){  
+  alert("Mail can't be blank");  
+  return false; 
+
+}
+else if(!(email.match(/[a-z A-Z 0-9 \.-_]+@gmail\.com$/)))
+{
+  alert("You have entered an invalid email address!");
+  return false;
+}
+}
+</script>
+</div>
+<section style="text-align:justify;">
+<fieldset class="eve">
+	<div class="made">
+		<div class="from"> 
+			<form name="myform" method="post" action="connect.php" onsubmit= "return validateform()">  
+					<h1 class="make" style="color:white;">BOOK YOUR EVENT</h1>
+					<label for="name" style="color:white;">NAME:</label><br>
+					<input id="name" type="text" name="name" required><br/><br> 
+					<label for="contact" style="color:white;">CONTACT NUMBER:</label><br>
+					<input id="contact"  pattern="[6-9][0-9]{9}" type="text" maxlength="10" name="number" required><br/><br>
+					<label for="email" style="color:white;">EMAIL:</label><br>
+					<input pattern="[a-z A-Z 0-9 \.-_]+@gmail\.com$" id="email" type="email" name="email" required><br/><br>
+					<label for="pwd" style="color:white;" required>PASSWORD:</label><br>
+					<input id="pwd" type="password" name="paswd" required><br/><br>
+			</div style="color:white" >
+					<label style="color:white;" for="event"><b>Events : </b></label><br><br>
+						<input style="color:white";" text="white" type="radio" name="event" value="Birthday"><b style="color:pink">BIRTHDAY<b><br><br>
+						<input style="color:white;" type="radio" name="event" value="Half-saree funtion" required><b>HALF-SAREE FUNCTION<b><br><br>
+						<input style="color:white;" type="radio" name="event" value="Marriage" required><b>MARRIAGE</b><br><br>
+						<input style="color:white;" type="radio" name="event" value="Babyshower" required><b>BABYSHOWER</b><br><br>
+						<input style="color:white;" type="radio" name="event" value="Anniversary" required><b>ANNIVERSARY</b><br><br>
+</div>
+					
+					<label style="color:white">ON WHAT DATE YOU NEED TO BOOK YOUR EVENT</label><br><br>
+					<input type="date" id="demo"name="date" min='2023-16-08'><br/><br><br>
+					 <br><br>
+
+					<script>
+						var date=new Date();
+						var tdate=date.getDate();
+						var month = date.getMonth()+1;
+						if(tdate<10){
+						tdate='0'+tdate;}
+						if(month<10){
+							month='0'+month;
+						}
+						var year =date.getUTCFullYear();
+						var minDate=year+"-"+month+"-"+tdate;
+						document.getElementById("demo").setAttribute('min',minDate)
+						console.log(minDate);
+						</script>
+							
+
+
+
+
+					<label for "day"> SELECT YOUR EVENT IN</label>
+					<select id="day" name="time">
+					<option value="MORING(9:00 am to 12 pm)" selected>MORING(9:00 am to 12 pm)</option> 
+					<option value="AFTERNOON(1:00 pm to 4 pm)" selected>AFTERNOON(1:00 pm to 4 pm)</option> 
+					<option value="EVENING(4:00 am to 8 pm)" selected>EVENING(4:00 am to 8 pm)</option> 
+					</select><br><BR>
+					<label for="address" style="color:white" >COMMENTS:</label><br>
+					<textarea  name="address" cols="20" rows="5"></textarea><br>
+				
+				
+					<input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+					<label  style="color:white" class="form-check-label"> I accept the <a href="#">Terms of Use</a>         					<a href="#">Privacy Policy</a></label><br><br>
+		<a href="connect.php"><input class="button" type="submit" value="REGISTER"></a>
+	<input style="margin:20px;"type="reset" name="reset" value="reset"><br><br>
+	<div style="margin:20px;">				
+	<a href="hm.html"><button style="background-color:lightblue" type="button">GO BACK</button></a>
+	</div>				  
+		</div>
+	</div>
+</fieldset>
+</section>
+</div>
+</body>
+</html>          
+

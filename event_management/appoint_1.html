@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>APPOINTMENT FORM</title>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial_scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+.bg-image{
+	background-image: url('mg-9.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment:fixed;
+	background-position:100% 10%;
+
+}	
+</style>
+</head>
+<body>
+
+<div class="bg-image">
+
+<center><b><font style="color:#ff5400;" size="20px"> APPOINTMENT DETAILS </font></b></center>
+<fieldset style="padding:50px 60px; font-size:20px;">
+	
+
+<form id="form" action="avalid.php" method="POST">
+	<label for="name"><b>Full Name :</b></label>
+	<input type="text" id="name" name="name"><br>
+		<span id="nameerror"></span><br>
+	<label for="gender"><b>Gender : </b></label><br><br>
+		<input type="radio" name="gender" value="male">Male<br><br>
+		<input type="radio" name="gender" value="female" checked="checked">Female<br><br>
+	<label><b>Age :</b></label>
+		<input type="number" name="age" id="age"><br><br>
+	<label><b>Appointment Date : </b></label>
+		<input type="text" name="date"><br><br>
+	<label><b>Patient Condition : </b></label><br><br>
+		<textarea  row="5" cols="20" name="condition"></textarea><br><br>
+	<label><b>Do You Have Arogyasree card : </b></label><br>
+		<input type="radio" name="card" value="Yes">Yes<br>
+		<input type="radio" name="card" value="No" checked="checked">No<br><br>
+	<label for="Hospital"><b>Hospitals : </b></label><br><br>
+		<input type="radio" name="Hospital" value="Mahatma Gandhi cancer hospital">Mahatma Gandhi cancer hospital<br><br>
+		<input type="radio" name="Hospital" value="Akira Eye hospital">Akira Eye hospital<br><br>
+		<input type="radio" name="Hospital" value="Rainbow children hospital">Rainbow children hospital<br><br>
+		<input type="radio" name="Hospital" value="Govt.general hospital mental care">Govt.general hospital mental care<br><br>
+		<input type="radio" name="Hospital" value="Govt.general hospital kurnool">Govt.general hospital kurnool<br><br>
+	<label ><b>Email:</b></label>
+		<input type="text" name="email" id="email"><br>
+		<span id="emailerror"></span><br>
+	<label><b>Mobile Number:</b></label>
+		<select>
+			<option value="1">91</option>
+			<option value="2">0</option>
+		</select>
+		<input type="text" name="number" id="num"> <br>
+		<span id="numbererror"></span><br><br>
+		
+	<label><b>Address:</b></label>
+	<textarea  row="5" cols="20" name="address"></textarea><br><br>
+<button type="submit" class="btn btn-danger" style="padding:10px;width: 10%;"><a href="hospitaldetails.html">CANCEL</a></button>
+<button type="submit" class="btn btn-success" style="padding:10px;width: 10%;">SUBMIT</button>
+</form>
+
+
+
+<script>
+	let is_name_valid=true;
+	let is_email_valid=true;
+	let is_phoneNumber_valid=true;
+	let form=document.getElementById("form");
+			form.addEventListener("submit",event=>{
+			event.preventDefault();
+			validate();
+			});
+	function validate()
+	{
+		//validating name
+		let uname=document.getElementById("name");
+		let name=uname.value.trim();
+		let uerror=document.getElementById("nameerror");
+		if (name==="")
+			{
+				uerror.innerText="cant be empty";
+				is_name_valid=false;
+				return;
+			}
+		if (name.length<3)		
+			{
+				uerror.innerText="Atleast it should contain 3 characters";
+				is_name_valid=false;
+				return;
+			}
+		if(/\d/.test(name))
+			{
+				uerror.innerText="numbers not allowed";
+				is_name_valid=false;				
+				return;
+			}
+	//validating email
+		var email_address=document.getElementById("email");
+		var mailerror=document.getElementById("emailerror");
+		var email=email_address.value.trim();
+		if(email===""){
+			mailerror.innerText="It should not be empty please enter your email address";
+			is_email_valid=false;
+			return;
+			}
+		if(! email.match(/\b[a-z A-Z 0-9]+[._-]*@[a-z A-Z 0-9 ._]+\.[a-z A-z]{3}\b/)){
+			mailerror.innerText="please enter correct mail address and mail addresses with .com extension only";
+			is_email_valid=false;
+			return;
+			}
+	//validating phone number			
+	var phone_number=document.getElementById("num");
+		var numerror=document.getElementById("numbererror");
+		var phoNumber=phone_number.value.trim();
+		if(phoNumber===""){
+			numerror.innerText="It should not be empty";
+			is_phoneNumber_valid=false;
+			return;
+			}
+		if(phoNumber.length<10)
+		{
+			numerror.innerText="number should contain 10 digits";
+			is_phoneNumber_valid=false;
+			return;
+		}
+		
+		if(! phoNumber.match(/[6-9][0-9]{9}/)){
+			numerror.innerText="please enter correct phone number";
+			is_phoneNumber_valid=false;
+			return;
+			}
+		if(is_name_valid && is_email_valid && is_phoneNumber_valid)
+		{
+		form.submit();
+		}
+		}
+</script>
+</div>
+</body>
+</html>
